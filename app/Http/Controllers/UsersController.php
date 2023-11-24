@@ -83,7 +83,7 @@ class UsersController extends Controller
     {
         $view = 'emails.confirm';
         $data = compact('user');
-//        $from = 'summer@example.com';
+        $from = 'summer@example.com';
         $name = 'Summer';
         $to = $user->email;
         $subject = "感谢注册 Weibo 应用！请确认你的邮箱。";
@@ -103,5 +103,9 @@ class UsersController extends Controller
         Auth::login($user);
         session()->flash('success', '恭喜你，激活成功！');
         return redirect()->route('users.show', [$user]);
+    }
+    public function statuses()
+    {
+        return $this->hasMany(Status::class);
     }
 }
